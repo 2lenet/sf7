@@ -29,6 +29,7 @@ install:
 
 # Start project
 start:
+	git config core.hooksPath .githooks
 	docker-compose up -d
 	@echo "Sf at http://127.0.0.1:8000/"
 	@echo "PMA at http://127.0.0.1:9000/"
@@ -53,10 +54,10 @@ console:
 prepare:
 	bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 	bin/console translation:pull loco --force
+	bin/console assets:install --symlink
 	bin/console cache:clear -q
 	bin/console credential:load
-	bin/console assets:install --symlink
-	#chmod -R 777 data
+	#chmod -R 777 var translations data
 
 # Download translations from Loco
 translate:
@@ -68,12 +69,13 @@ wp-watch:
 
 # Run tests
 test:
-	#$(CONSOLE) lint:container
-	#$(CONSOLE) lint:twig templates
+	$(CONSOLE) lint:twig templates
 	$(EXEC) ./vendor/bin/phpcs
 	$(EXEC) ./vendor/bin/phpstan analyse
 	$(EXEC) cp phpunit.xml.dist phpunit.xml
+	$(CONSOLE) doctrine:database:drop --if-exists --force --env=test
 	$(CONSOLE) doctrine:database:create --if-not-exists --env=test
 	$(CONSOLE) doctrine:migrations:migrate --no-interaction --allow-no-migration --env=test
-	#$(CONSOLE doctrine:fixtures:load -n --env=test
+	$(CONSOLE) doctrine:schema:validate -vvv
+	$(CONSOLE) credential:load --env=test
 	$(EXEC) bin/phpunit tests/ -v --coverage-clover phpunit-coverage.xml --log-junit phpunit-report.xml
