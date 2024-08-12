@@ -18,6 +18,7 @@ init:
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/build.sh
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile
 	echo "build dbtest"
+	chmod u+x dbtest/build.sh
 	cd dbtest; ./build.sh
 
 # Install project
