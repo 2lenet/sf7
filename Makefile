@@ -54,11 +54,11 @@ console:
 # Run migrations
 prepare:
 	bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
-	bin/console translation:pull loco --force
+	# bin/console translation:pull loco --force
 	bin/console assets:install --symlink
 	bin/console cache:clear -q
-	bin/console credential:load
-	#chmod -R 777 var translations data
+	# bin/console credential:load
+	chmod -R 777 var translations
 
 # Download translations from Loco
 translate:
