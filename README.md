@@ -23,6 +23,15 @@ add the project to git ( git init or add to existing project )
 make start
 ```
 
+Create your first migration for bundle entities
+
+```
+make console
+bin/console make:migration
+bin/console doc:mi:mi
+```
+
+
 This will create your project, modify all reference to [PROJECT] in config files
 
 After that you have :
