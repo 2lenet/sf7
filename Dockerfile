@@ -10,7 +10,7 @@ ENV APP_NAME="[PROJECT]"
 ARG app_version=dev
 ENV APP_VERSION=$app_version
 
-RUN COMPOSER_MEMORY_LIMIT=-1 COMPOSER_ALLOW_SUPERUSER=1 composer install
+RUN COMPOSER_MEMORY_LIMIT=-1 COMPOSER_ALLOW_SUPERUSER=1 composer install  --no-scripts
 RUN bin/console assets:install --symlink
 RUN npm install
 RUN npm run build
