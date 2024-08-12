@@ -1,6 +1,7 @@
 services:
     dbtest:
-        image: registry.2le.net/2le/[PROJECT]:dbtest
+        image: mariadb:11
+        # image: registry.2le.net/2le/[PROJECT]:dbtest
 
     symfony:
         build: .
