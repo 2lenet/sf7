@@ -4,12 +4,12 @@ Sf7 2le project template
 To bootstrap a project use the following steps:
 
 ```bash
-composer create-project 2lenet/sf7 project_name
+composer create-project 2lenet/sf7 project_name --no-scripts
 ```
 
 or with docker :
 ```bash
-docker run -it -v $PWD:/var/www/html registry.2le.net/2le/2le:base-sf6 composer create-project 2lenet/sf7 project_name
+docker run -it -v $PWD:/var/www/html registry.2le.net/2le/2le:base-sf6 composer create-project 2lenet/sf7 project_name --no-scripts
 ```
 
 Say Yes to all recipes question exept Doctrine
