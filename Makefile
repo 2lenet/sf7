@@ -17,9 +17,9 @@ init:
 	sed -i -E 's/2lenet\/project/2lenet\/${PROJECT}/g' composer.json
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/build.sh
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile
-	echo "build dbtest"
 	chmod u+x dbtest/build.sh
-	cd dbtest; ./build.sh
+	echo "build dbtest if you want in dbtest"
+	echo "cd dbtest; ./build.sh"
 
 # Install project
 install:
