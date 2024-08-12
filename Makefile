@@ -8,7 +8,7 @@ PROJECT := $(shell basename ${CURDIR})
 
 # Run once after composer create-project
 init:
-	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yaml
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yml
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Dockerfile
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Makefile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
