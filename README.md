@@ -12,6 +12,9 @@ or with docker :
 docker run -it -v $PWD:/var/www/html registry.2le.net/2le/2le:base-sf6 composer create-project 2lenet/sf7 project_name
 ```
 
+Say Yes to all recipes question exept Doctrine
+
+
 ```
 cd project_name
 make init
