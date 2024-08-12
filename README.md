@@ -16,6 +16,10 @@ docker run -it -v $PWD:/var/www/html registry.2le.net/2le/2le:base-sf6 composer 
 cd project_name
 make init
 make install
+```
+add the project to git ( git init or add to existing project )
+
+```
 make start
 ```
 
