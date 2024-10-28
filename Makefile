@@ -1,14 +1,14 @@
 EXEC := $(shell if [ -f /.dockerenv ]; then \
     	echo ""; \
 	else \
-    	echo "docker-compose exec symfony"; \
+    	echo "docker compose exec symfony"; \
 	fi)
 CONSOLE = $(EXEC) bin/console
 PROJECT := $(shell basename ${CURDIR})
 
 # Run once after composer create-project
 init:
-	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yml
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker compose.yml
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Dockerfile
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Makefile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
@@ -23,22 +23,22 @@ init:
 
 # Install project
 install:
-	docker-compose build
-	docker-compose run symfony composer install
-	docker-compose run symfony npm install
-	docker-compose run symfony npm run build
-	docker-compose run symfony chmod -R 777 var
+	docker compose build
+	docker compose run symfony composer install
+	docker compose run symfony npm install
+	docker compose run symfony npm run build
+	docker compose run symfony chmod -R 777 var
 
 # Start project
 start:
 	git config core.hooksPath .githooks
-	docker-compose up -d
+	docker compose up -d
 	@echo "Sf at http://127.0.0.1:8000/"
 	@echo "PMA at http://127.0.0.1:9000/"
 
 # Stop project
 stop:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 build:
 	docker build --build-arg app_version=dev-${CI_PIPELINE_ID} -t registry.2le.net/2le/[PROJECT] .
@@ -50,7 +50,7 @@ cc:
 
 # Get into Symfony docker bash
 console:
-	docker-compose exec symfony bash
+	docker compose exec symfony bash
 
 # Run migrations
 prepare:
