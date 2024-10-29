@@ -74,7 +74,7 @@ deploy-main:
     only:
         - main
     script:
-        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/[PROJECT]/; ./up.sh $CI_REGISTRY_IMAGE:latest symfony "
+        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/[PROJECT]/; up-stack $CI_REGISTRY_IMAGE:latest symfony "
 
 #build-tags:
 #    stage: build
