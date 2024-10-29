@@ -78,6 +78,6 @@ test:
 	$(CONSOLE) doctrine:database:drop --if-exists --force --env=test
 	$(CONSOLE) doctrine:database:create --if-not-exists --env=test
 	$(CONSOLE) doctrine:migrations:migrate --no-interaction --allow-no-migration --env=test
-	$(CONSOLE) doctrine:schema:validate -vvv
+	$(CONSOLE) doctrine:schema:validate -v --env=test
 	$(CONSOLE) credential:load --env=test
 	$(EXEC) bin/phpunit tests/ -v --coverage-clover phpunit-coverage.xml --log-junit phpunit-report.xml
