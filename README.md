@@ -18,7 +18,6 @@ Say Yes to all recipes question exept Doctrine
 ```
 cd project_name
 make init
-make install
 ```
 add the project to git ( git init or add to existing project )
 

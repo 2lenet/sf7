@@ -1,0 +1,49 @@
+when@dev:
+    monolog:
+        handlers:
+            main:
+                type: rotating_file
+                path: '%kernel.logs_dir%/%kernel.environment%.log'
+                level: debug
+                max_files: 10
+
+when@prod:
+    monolog:
+        channels: [deprecation]
+        handlers:
+            main:
+                # means only triggered when the action level is reached
+                type: fingers_crossed
+                # means only triggered for 5xx HTTP code errors
+                action_level: critical
+                handler: grouped
+            streamed:
+                type: rotating_file
+                path: '%kernel.logs_dir%/%kernel.environment%.log'
+                level: info
+                max_files: 10
+            # only if the records are unique over a given period of time
+            deduplicated:
+                type: deduplication
+                time: 60
+                handler: symfony_mailer
+            # combine handlers (by mail and in a file server)
+            grouped:
+                type: group
+                members: [streamed, deduplicated]
+            symfony_mailer:
+                type: symfony_mailer
+                from_email: 'no-reply@2le.fr'
+                to_email: 'projet@2le.fr'
+                subject: '[PROJECT] : An error occurred on production !'
+                formatter: monolog.formatter.html
+                content_type: text/html
+            deprecation:
+                type: rotating_file
+                channels: [deprecation]
+                path: '%kernel.logs_dir%/deprecation.log'
+                max_files: 10
+            sentry:
+                type: sentry
+                level: !php/const Monolog\Logger::ERROR
+                hub_id: Sentry\State\HubInterface

@@ -8,7 +8,7 @@ PROJECT := $(shell basename ${CURDIR})
 
 # Run once after composer create-project
 init:
-	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker compose.yml
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yml
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Dockerfile
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Makefile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
@@ -20,6 +20,13 @@ init:
 	chmod u+x dbtest/build.sh
 	echo "build dbtest if you want in dbtest"
 	echo "cd dbtest; ./build.sh"
+	make install
+	cat init-config/monolog.yaml > config/packages/monolog.yaml
+	sed -i -E 's/\[PROJECT\]/[$(PROJECT)]/g' config/packages/monolog.yaml
+	cat init-config/sentry.yaml > config/packages/sentry.yaml
+	cat init-config/translation.yaml > config/packages/translation.yaml
+	echo "Don't forget to configure SENTRY_DSN and LOCO_DSN in your .env file"
+	rm -r init-config
 
 # Install project
 install:
