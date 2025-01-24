@@ -26,9 +26,14 @@ unittest:
         - npm run build
         - make test
     artifacts:
+        reports:
+            coverage_report:
+                coverage_format: cobertura
+                path: coverage-cobertura.xml
         paths:
             - phpunit-coverage.xml
             - phpunit-report.xml
+            - coverage-cobertura.xml
     only:
         - main
         - merge_requests
@@ -47,15 +52,15 @@ sonarqube:
         - merge_requests
         - devops
 
-#hal:
-#    image: registry.2le.net/2le/2le:base-sf6
-#    stage: build
-#    only:
-#        - tags
-#    script:
-#        - curl --location --request POST "https://hal.2le-test.me/api/upload/composer/[PROJECT]" --form composerJson=@composer.json --form composerLock=@composer.lock
-#        - curl --location --request POST "https://hal.2le-test.me/api/upload/package/[PROJECT]" --header "Content-Type:application/json" --data-binary @package.json
-#        - curl --location --request POST "https://hal.2le-test.me/api/upload/phpstan/[PROJECT]" --data-binary @phpstan.neon
+hal:
+    image: registry.2le.net/2le/2le:base-sf6
+    stage: build
+    only:
+        - tags
+    script:
+        - curl --location --request POST "https://hal.2le-test.me/api/upload/composer/[PROJECT]" --form composerJson=@composer.json --form composerLock=@composer.lock
+        - curl --location --request POST "https://hal.2le-test.me/api/upload/package/[PROJECT]" --header "Content-Type:application/json" --data-binary @package.json
+        - curl --location --request POST "https://hal.2le-test.me/api/upload/phpstan/[PROJECT]" --data-binary @phpstan.neon
 
 build-main:
     stage: build
