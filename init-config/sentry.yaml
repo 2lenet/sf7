@@ -9,5 +9,6 @@ when@prod:
                 - 'Symfony\Component\HttpKernel\Exception\BadRequestHttpException'
                 - 'Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException'
                 - 'Symfony\Component\Security\Core\Exception\AccessDeniedException'
+                - 'Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException'
         register_error_listener: false # Disables the ErrorListener to avoid duplicated log in sentry
         register_error_handler: false # Disables the ErrorListener, ExceptionListener and FatalErrorListener integrations of the base PHP SDK
