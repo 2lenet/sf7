@@ -11,7 +11,7 @@ variables:
 
 include:
     - project: '2le/devops'
-      ref: master                                      # Git branch
+      ref: main # Git branch
       file: '/gitlab-ci/symfony-check.yml'
 
 unittest:
