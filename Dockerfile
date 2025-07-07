@@ -1,4 +1,4 @@
-FROM registry.2le.net/2le/2le:base-sf6
+FROM registry.2le.net/2le/2le:base-sf7
 
 COPY ./docker/php/php.ini /usr/local/etc/php/
 COPY ./docker/apache/default.conf /etc/apache2/conf.d/000-default.conf
@@ -18,5 +18,3 @@ RUN npm run build
 VOLUME ["/var/www/html/var/cache"]
 
 EXPOSE 80
-
-CMD ["sh", "-c", "make prepare && apache2-foreground"]

@@ -15,7 +15,7 @@ include:
       file: '/gitlab-ci/symfony-check.yml'
 
 unittest:
-    image: registry.2le.net/2le/2le:base-sf6-xdebug
+    image: registry.2le.net/2le/2le:base-sf7-xdebug
     stage: test
     services:
         - name: registry.2le.net/2le/[PROJECT]:dbtest
@@ -53,7 +53,7 @@ sonarqube:
         - devops
 
 hal:
-    image: registry.2le.net/2le/2le:base-sf6
+    image: registry.2le.net/2le/2le:base-sf7
     stage: build
     only:
         - tags
