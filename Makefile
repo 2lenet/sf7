@@ -67,7 +67,6 @@ prepare:
 	bin/console assets:install --symlink
 	bin/console cache:clear -q
 	# bin/console credential:load
-	chmod -R 777 var translations
 
 # Download translations from Loco
 translate:
@@ -87,6 +86,6 @@ test:
 	$(CONSOLE) doctrine:database:create --if-not-exists --env=test
 	$(CONSOLE) doctrine:migrations:migrate --no-interaction --allow-no-migration --env=test
 	$(CONSOLE) doctrine:schema:validate -v --env=test
-	$(CONSOLE) credential:load --env=test
+	#$(CONSOLE) credential:load --env=test
 	$(EXEC) bin/phpunit tests/ -v --coverage-clover phpunit-coverage.xml --log-junit phpunit-report.xml --coverage-cobertura=coverage-cobertura.xml
 
