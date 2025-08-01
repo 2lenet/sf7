@@ -9,7 +9,6 @@ when@dev:
 
 when@prod:
     monolog:
-        channels: [deprecation]
         handlers:
             main:
                 # means only triggered when the action level is reached
@@ -38,11 +37,6 @@ when@prod:
                 subject: '[PROJECT] : An error occurred on production !'
                 formatter: monolog.formatter.html
                 content_type: text/html
-            deprecation:
-                type: rotating_file
-                channels: [deprecation]
-                path: '%kernel.logs_dir%/deprecation.log'
-                max_files: 10
             sentry:
                 type: sentry
                 level: !php/const Monolog\Logger::ERROR
