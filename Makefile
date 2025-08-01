@@ -20,7 +20,7 @@ init:
 	chmod u+x dbtest/build.sh
 	echo "build dbtest if you want in dbtest"
 	echo "cd dbtest; ./build.sh"
-        git init
+	git init
 	make install
 	cat init-config/monolog.yaml > config/packages/monolog.yaml
 	sed -i -E 's/\[PROJECT\]/[$(PROJECT)]/g' config/packages/monolog.yaml
