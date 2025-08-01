@@ -14,8 +14,8 @@ parameters:
         - src/Kernel.php
     doctrine:
         objectManagerLoader: tests/object-manager.php
-    ignoreErrors:
-        -
-            identifier: missingType.iterableValue
-        -
-            identifier: missingType.generics
+#    ignoreErrors:
+#        -
+#            identifier: missingType.iterableValue
+#        -
+#            identifier: missingType.generics
