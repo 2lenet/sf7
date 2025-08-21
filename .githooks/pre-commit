@@ -16,8 +16,8 @@ function __run() #(step, name, cmd)
     fi
 }
 
-__run "1/4" "php-lint" "docker compose exec symfony php -l src/"
-__run "2/4" "phpcbf" "docker compose exec symfony vendor/bin/phpcbf src/"
-__run "3/4" "phpstan" "docker compose exec symfony vendor/bin/phpstan analyse"
-__run "4/4" "doctrine" "docker compose exec symfony bin/console doctrine:schema:validate"
-
+__run "1/5" "php-lint" "docker compose exec symfony php -l src/"
+__run "2/5" "phpcbf" "docker compose exec symfony vendor/bin/phpcbf src/"
+__run "3/5" "phpcs" "docker compose exec symfony vendor/bin/phpcs src/"
+__run "4/5" "phpstan" "docker compose exec symfony vendor/bin/phpstan analyse"
+__run "5/5" "doctrine" "docker compose exec symfony bin/console doctrine:schema:validate"
