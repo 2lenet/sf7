@@ -32,15 +32,15 @@ init:
 # Install project
 install:
 	docker compose build
-	docker compose run symfony composer install
-	docker compose run symfony npm install
-	docker compose run symfony npm run build
-	docker compose run symfony chmod -R 777 var
+	docker compose run --entrypoint "/bin/sh -c" symfony "chmod -R 777 var translations"
+	docker compose run --entrypoint "/bin/sh -c" symfony "composer install"
+	docker compose run --entrypoint "/bin/sh -c" symfony "npm install"
+	docker compose run --entrypoint "/bin/sh -c" symfony "npm run dev"
 
 # Start project
 start:
 	git config core.hooksPath .githooks
-	docker compose up -d
+	docker compose up -d --remove-orphans
 	@echo "Sf at http://127.0.0.1:8000/"
 	@echo "PMA at http://127.0.0.1:9000/"
 
