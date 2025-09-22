@@ -8,6 +8,8 @@ services:
 
     symfony:
         build: .
+        entrypoint: "/entrypoint_dev.sh"
+        command: "'apache2-foreground'"
         working_dir: /var/www/html
         ports:
             - "8000:80"
