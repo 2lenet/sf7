@@ -64,7 +64,7 @@ console:
 prepare:
 	bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 	# bin/console translation:pull loco --force
-	bin/console assets:install --symlink
+	bin/console assets:install
 	bin/console cache:clear -q
 	# bin/console credential:load
 
