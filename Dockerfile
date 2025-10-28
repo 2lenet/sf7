@@ -15,6 +15,4 @@ RUN bin/console assets:install --symlink
 RUN npm install
 RUN npm run build
 
-VOLUME ["/var/www/html/var/cache"]
-
 EXPOSE 80
